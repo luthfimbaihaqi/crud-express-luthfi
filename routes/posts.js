@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 //import database
-var connection = require('../database/conenect');
+var connection = require('../database/connect');
 
 /**
  * INDEX POSTS
