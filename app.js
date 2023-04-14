@@ -5,12 +5,12 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 //library
-var flash   = require('express-flash');
-var session = require('express-session');
+var flash   = require('express-flash'); // menampilkan error pada halaman
+var session = require('express-session'); 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var postsRouter = require('./routes/posts'); // <-- route posts
+var postsRouter = require('./routes/posts'); 
 
 var app = express();
 
@@ -22,18 +22,16 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({ 
   cookie: { 
-    maxAge: 60000 
+    maxAge: 60000 // max 6mb untuk pesan tampil pada halaman
   },
   store: new session.MemoryStore,
   saveUninitialized: true,
   resave: 'true',
   secret: 'secret'
 }))
-
 app.use(flash())
 
 app.use('/', indexRouter);
